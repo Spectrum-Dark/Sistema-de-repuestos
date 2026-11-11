@@ -31,6 +31,8 @@ export default function ModalVenta({
   ventas,
   clientes,
   productos,
+  compatibilidades,
+  modelos,
   onCerrar,
   onGuardado,
 }) {
@@ -212,6 +214,8 @@ export default function ModalVenta({
         <EditorDetallesVenta
           filas={filas}
           productos={opcionesProducto}
+          compatibilidades={compatibilidades}
+          modelos={modelos}
           venta={venta}
           onChange={cambiarFilas}
         />

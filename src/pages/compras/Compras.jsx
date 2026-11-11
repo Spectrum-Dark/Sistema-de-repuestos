@@ -4,6 +4,8 @@ import { sileo } from 'sileo';
 import { useCompras } from '../../hooks/compras/useCompras';
 import { useProveedores } from '../../hooks/proveedores/useProveedores';
 import { useProductos } from '../../hooks/productos/useProductos';
+import { useCompatibilidades } from '../../hooks/compatibilidades/useCompatibilidades';
+import { useModelos } from '../../hooks/modelos/useModelos';
 import { usePermisos } from '../../hooks/sesion/usePermisos';
 import { useGestionCrud } from '../../hooks/compartido/useGestionCrud';
 import { confirmarCompra } from '../../services/compras/comprasService';
@@ -78,6 +80,8 @@ export default function Compras() {
     useCompras();
   const { proveedores } = useProveedores();
   const { productos } = useProductos();
+  const { compatibilidades } = useCompatibilidades();
+  const { modelos } = useModelos();
   const permisos = usePermisos();
 
   // Validación de permisos del usuario actual para determinar si puede realizar operaciones de escritura.
@@ -178,6 +182,8 @@ export default function Compras() {
           compras={compras}
           proveedores={proveedores}
           productos={productos}
+          compatibilidades={compatibilidades}
+          modelos={modelos}
           onCerrar={g.cerrarModal}
           onGuardado={g.guardado}
         />

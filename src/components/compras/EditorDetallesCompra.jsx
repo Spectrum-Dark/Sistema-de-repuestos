@@ -9,7 +9,13 @@ const claseInput =
   'w-full rounded-xl border border-slate-300 bg-white px-3 py-2.5 text-sm text-slate-900 transition focus:border-slate-500 focus:outline-none focus:ring-2 focus:ring-slate-200';
 
 // Componente para gestionar dinámicamente los detalles de una compra (selección de productos, cantidades, precios unitarios y subtotales).
-export default function EditorDetallesCompra({ filas, productos, onChange }) {
+export default function EditorDetallesCompra({
+  filas,
+  productos,
+  compatibilidades,
+  modelos,
+  onChange,
+}) {
   // Función auxiliar para actualizar los campos de una fila específica dentro del listado de detalles.
   const actualizarFila = (indice, cambios) =>
     onChange(filas.map((f, i) => (i === indice ? { ...f, ...cambios } : f)));
@@ -80,11 +86,26 @@ export default function EditorDetallesCompra({ filas, productos, onChange }) {
                       String(p.id_producto) === fila.id_producto ||
                       !idsElegidos.includes(String(p.id_producto))
                   )
-                  .map((p) => ({
-                    value: p.id_producto,
-                    label: `${p.codigo_producto} — ${p.nombre_producto}`,
-                    descripcion: `Precio compra: ${formatearPrecio(p.precio_compra)}`,
-                  }))}
+                  .map((p) => {
+                    const idsModelos = compatibilidades
+                      .filter(
+                        (compatibilidad) =>
+                          String(compatibilidad.id_producto) ===
+                          String(p.id_producto)
+                      )
+                      .map((compatibilidad) => String(compatibilidad.id_modelo));
+                    const modelosCompatibles = modelos
+                      .filter((modelo) =>
+                        idsModelos.includes(String(modelo.id_modelo))
+                      )
+                      .map((modelo) => modelo.nombre_modelo);
+
+                    return {
+                      value: p.id_producto,
+                      label: `${p.codigo_producto} - ${p.nombre_producto}${modelosCompatibles.length ? ` - ${modelosCompatibles.join(', ')}` : ''}`,
+                      descripcion: `Precio compra: ${formatearPrecio(p.precio_compra)}`,
+                    };
+                  })}
                 required
               />
             </div>

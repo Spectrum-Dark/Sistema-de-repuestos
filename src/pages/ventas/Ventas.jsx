@@ -4,6 +4,8 @@ import { sileo } from 'sileo';
 import { useVentas } from '../../hooks/ventas/useVentas';
 import { useClientes } from '../../hooks/clientes/useClientes';
 import { useProductos } from '../../hooks/productos/useProductos';
+import { useCompatibilidades } from '../../hooks/compatibilidades/useCompatibilidades';
+import { useModelos } from '../../hooks/modelos/useModelos';
 import { usePermisos } from '../../hooks/sesion/usePermisos';
 import { useGestionCrud } from '../../hooks/compartido/useGestionCrud';
 import {
@@ -84,6 +86,8 @@ export default function Ventas() {
   const { ventas, cargando, error, recargar, actualizarEnLista } = useVentas();
   const { clientes } = useClientes();
   const { productos } = useProductos();
+  const { compatibilidades } = useCompatibilidades();
+  const { modelos } = useModelos();
   const permisos = usePermisos();
   const puedeOperar = permisos.puedeCrear;
 
@@ -190,6 +194,8 @@ export default function Ventas() {
           ventas={ventas}
           clientes={clientes}
           productos={productos}
+          compatibilidades={compatibilidades}
+          modelos={modelos}
           onCerrar={g.cerrarModal}
           onGuardado={g.guardado}
         />

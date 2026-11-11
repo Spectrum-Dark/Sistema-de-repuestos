@@ -11,6 +11,8 @@ const claseInput =
 export default function EditorDetallesVenta({
   filas,
   productos,
+  compatibilidades,
+  modelos,
   venta,
   onChange,
 }) {
@@ -111,11 +113,26 @@ export default function EditorDetallesVenta({
                           String(producto.id_producto)
                       )
                   )
-                  .map((producto) => ({
-                    value: producto.id_producto,
-                    label: `${producto.codigo_producto} — ${producto.nombre_producto}`,
-                    descripcion: `Existencia: ${producto.existencia}`,
-                  }))}
+                  .map((producto) => {
+                    const idsModelos = compatibilidades
+                      .filter(
+                        (compatibilidad) =>
+                          String(compatibilidad.id_producto) ===
+                          String(producto.id_producto)
+                      )
+                      .map((compatibilidad) => String(compatibilidad.id_modelo));
+                    const modelosCompatibles = modelos
+                      .filter((modelo) =>
+                        idsModelos.includes(String(modelo.id_modelo))
+                      )
+                      .map((modelo) => modelo.nombre_modelo);
+
+                    return {
+                      value: producto.id_producto,
+                      label: `${producto.codigo_producto} - ${producto.nombre_producto}${modelosCompatibles.length ? ` - ${modelosCompatibles.join(', ')}` : ''}`,
+                      descripcion: `Existencia: ${producto.existencia}`,
+                    };
+                  })}
                 required
               />
             </div>

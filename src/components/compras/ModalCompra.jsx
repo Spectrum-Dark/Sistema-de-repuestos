@@ -33,6 +33,8 @@ export default function ModalCompra({
   compras,
   proveedores,
   productos,
+  compatibilidades,
+  modelos,
   onCerrar,
   onGuardado,
 }) {
@@ -340,6 +342,8 @@ export default function ModalCompra({
           <EditorDetallesCompra
             filas={filas}
             productos={opcionesProducto}
+            compatibilidades={compatibilidades}
+            modelos={modelos}
             onChange={cambiarFilas}
           />
         </section>

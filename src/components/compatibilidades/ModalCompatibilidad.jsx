@@ -154,7 +154,7 @@ export default function ModalCompatibilidad({
             <option value="">Selecciona un producto</option>
             {opcionesProducto.map((producto) => (
               <option key={producto.id_producto} value={producto.id_producto}>
-                {producto.codigo_producto} – {producto.nombre_producto}
+                {producto.codigo_producto} - {producto.nombre_producto}
               </option>
             ))}
           </CampoSelect>
@@ -169,7 +169,7 @@ export default function ModalCompatibilidad({
             <option value="">Selecciona un modelo</option>
             {opcionesModelo.map((modelo) => (
               <option key={modelo.id_modelo} value={modelo.id_modelo}>
-                {nombresMarcas[modelo.id_marca] ?? '—'} – {modelo.nombre_modelo}
+                {nombresMarcas[modelo.id_marca] ?? '—'} - {modelo.nombre_modelo}
               </option>
             ))}
           </CampoSelect>
