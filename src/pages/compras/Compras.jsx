@@ -6,6 +6,7 @@ import { useProveedores } from '../../hooks/proveedores/useProveedores';
 import { useProductos } from '../../hooks/productos/useProductos';
 import { useCompatibilidades } from '../../hooks/compatibilidades/useCompatibilidades';
 import { useModelos } from '../../hooks/modelos/useModelos';
+import { useMarcas } from '../../hooks/marcas/useMarcas';
 import { usePermisos } from '../../hooks/sesion/usePermisos';
 import { useGestionCrud } from '../../hooks/compartido/useGestionCrud';
 import { confirmarCompra } from '../../services/compras/comprasService';
@@ -82,6 +83,7 @@ export default function Compras() {
   const { productos } = useProductos();
   const { compatibilidades } = useCompatibilidades();
   const { modelos } = useModelos();
+  const { marcas } = useMarcas();
   const permisos = usePermisos();
 
   // Validación de permisos del usuario actual para determinar si puede realizar operaciones de escritura.
@@ -184,6 +186,7 @@ export default function Compras() {
           productos={productos}
           compatibilidades={compatibilidades}
           modelos={modelos}
+          marcas={marcas}
           onCerrar={g.cerrarModal}
           onGuardado={g.guardado}
         />

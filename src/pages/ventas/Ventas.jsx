@@ -6,6 +6,7 @@ import { useClientes } from '../../hooks/clientes/useClientes';
 import { useProductos } from '../../hooks/productos/useProductos';
 import { useCompatibilidades } from '../../hooks/compatibilidades/useCompatibilidades';
 import { useModelos } from '../../hooks/modelos/useModelos';
+import { useMarcas } from '../../hooks/marcas/useMarcas';
 import { usePermisos } from '../../hooks/sesion/usePermisos';
 import { useGestionCrud } from '../../hooks/compartido/useGestionCrud';
 import {
@@ -88,6 +89,7 @@ export default function Ventas() {
   const { productos } = useProductos();
   const { compatibilidades } = useCompatibilidades();
   const { modelos } = useModelos();
+  const { marcas } = useMarcas();
   const permisos = usePermisos();
   const puedeOperar = permisos.puedeCrear;
 
@@ -196,6 +198,7 @@ export default function Ventas() {
           productos={productos}
           compatibilidades={compatibilidades}
           modelos={modelos}
+          marcas={marcas}
           onCerrar={g.cerrarModal}
           onGuardado={g.guardado}
         />

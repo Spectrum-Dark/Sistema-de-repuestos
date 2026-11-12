@@ -33,6 +33,7 @@ export default function ModalVenta({
   productos,
   compatibilidades,
   modelos,
+  marcas,
   onCerrar,
   onGuardado,
 }) {
@@ -216,6 +217,7 @@ export default function ModalVenta({
           productos={opcionesProducto}
           compatibilidades={compatibilidades}
           modelos={modelos}
+          marcas={marcas}
           venta={venta}
           onChange={cambiarFilas}
         />

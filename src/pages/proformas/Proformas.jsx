@@ -5,6 +5,9 @@ import EditorDetallesVenta from '../../components/ventas/EditorDetallesVenta';
 import VistaProforma from '../../components/proformas/VistaProforma';
 import { useClientes } from '../../hooks/clientes/useClientes';
 import { useProductos } from '../../hooks/productos/useProductos';
+import { useCompatibilidades } from '../../hooks/compatibilidades/useCompatibilidades';
+import { useModelos } from '../../hooks/modelos/useModelos';
+import { useMarcas } from '../../hooks/marcas/useMarcas';
 import { calcularTotales, subtotalDetalle } from '../../utils/ventas/calculos';
 import { FILA_VACIA, filaCompleta } from '../../utils/ventas/detalles';
 import { formatearPrecio } from '../../utils/productos/formato';
@@ -29,6 +32,9 @@ export default function Proformas() {
     error: errorProductos,
     recargar: recargarProductos,
   } = useProductos();
+  const { compatibilidades } = useCompatibilidades();
+  const { modelos } = useModelos();
+  const { marcas } = useMarcas();
 
   // Estados locales para almacenar el cliente seleccionado, las líneas de la proforma, notas y el estado de la proforma generada.
   const [idCliente, setIdCliente] = useState('');
@@ -172,6 +178,9 @@ export default function Proformas() {
           <EditorDetallesVenta
             filas={filas}
             productos={productos}
+            compatibilidades={compatibilidades}
+            modelos={modelos}
+            marcas={marcas}
             onChange={cambiarFilas}
           />
 

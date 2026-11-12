@@ -2,7 +2,10 @@ import { Plus, Trash2 } from 'lucide-react';
 import CampoSeleccionable from '../compartido/CampoSeleccionable';
 import { subtotalDetalle } from '../../utils/compras/calculos';
 import { FILA_VACIA } from '../../utils/compras/detalles';
-import { formatearPrecio } from '../../utils/productos/formato';
+import {
+  formatearEtiquetaProducto,
+  formatearPrecio,
+} from '../../utils/productos/formato';
 
 // Constante que define las clases CSS reutilizables para los inputs dentro del editor de detalles de compra.
 const claseInput =
@@ -12,8 +15,9 @@ const claseInput =
 export default function EditorDetallesCompra({
   filas,
   productos,
-  compatibilidades,
-  modelos,
+  compatibilidades = [],
+  modelos = [],
+  marcas = [],
   onChange,
 }) {
   // Función auxiliar para actualizar los campos de una fila específica dentro del listado de detalles.
@@ -86,26 +90,16 @@ export default function EditorDetallesCompra({
                       String(p.id_producto) === fila.id_producto ||
                       !idsElegidos.includes(String(p.id_producto))
                   )
-                  .map((p) => {
-                    const idsModelos = compatibilidades
-                      .filter(
-                        (compatibilidad) =>
-                          String(compatibilidad.id_producto) ===
-                          String(p.id_producto)
-                      )
-                      .map((compatibilidad) => String(compatibilidad.id_modelo));
-                    const modelosCompatibles = modelos
-                      .filter((modelo) =>
-                        idsModelos.includes(String(modelo.id_modelo))
-                      )
-                      .map((modelo) => modelo.nombre_modelo);
-
-                    return {
-                      value: p.id_producto,
-                      label: `${p.codigo_producto} - ${p.nombre_producto}${modelosCompatibles.length ? ` - ${modelosCompatibles.join(', ')}` : ''}`,
-                      descripcion: `Precio compra: ${formatearPrecio(p.precio_compra)}`,
-                    };
-                  })}
+                  .map((p) => ({
+                    value: p.id_producto,
+                    label: formatearEtiquetaProducto(
+                      p,
+                      compatibilidades,
+                      modelos,
+                      marcas
+                    ),
+                    descripcion: `Precio compra: ${formatearPrecio(p.precio_compra)}`,
+                  }))}
                 required
               />
             </div>

@@ -35,6 +35,7 @@ export default function ModalCompra({
   productos,
   compatibilidades,
   modelos,
+  marcas,
   onCerrar,
   onGuardado,
 }) {
@@ -344,6 +345,7 @@ export default function ModalCompra({
             productos={opcionesProducto}
             compatibilidades={compatibilidades}
             modelos={modelos}
+            marcas={marcas}
             onChange={cambiarFilas}
           />
         </section>
