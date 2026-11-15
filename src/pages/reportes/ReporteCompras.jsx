@@ -45,8 +45,7 @@ export default function ReporteCompras() {
                 .join('\n') || '—',
           },
           { etiqueta: 'Subtotal', valor: (c) => formatearPrecio(c.subtotal) },
-          { etiqueta: 'Impuesto', valor: (c) => formatearPrecio(c.impuesto) },
-          { etiqueta: 'Total', valor: (c) => formatearPrecio(c.total) },
+          { etiqueta: 'Total', valor: (c) => formatearPrecio(c.subtotal ?? c.total) },
           { etiqueta: 'Estado', valor: (c) => c.estado },
           {
             etiqueta: 'Usuario',

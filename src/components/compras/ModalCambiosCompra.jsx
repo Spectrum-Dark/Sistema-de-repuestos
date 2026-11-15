@@ -68,11 +68,6 @@ export default function ModalCambiosCompra({
       despues: dinero(despues.subtotal),
     },
     {
-      etiqueta: 'Impuesto',
-      antes: dinero(antes.impuesto),
-      despues: dinero(despues.impuesto),
-    },
-    {
       etiqueta: 'Total',
       antes: dinero(antes.total),
       despues: dinero(despues.total),

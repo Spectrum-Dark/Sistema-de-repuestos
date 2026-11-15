@@ -1,6 +1,3 @@
-// Tasa de IVA constante (15%), útil para cálculos fiscales estándar en la aplicación.
-export const TASA_IVA = 0.15;
-
 /**
  * Función auxiliar para evitar problemas de precisión con decimales flotantes en JavaScript.
  * Utiliza Number.EPSILON para asegurar un redondeo matemático preciso a dos decimales.
@@ -26,9 +23,6 @@ export function calcularTotales(filas) {
     )
   );
 
-  // Calcula el impuesto multiplicando el subtotal acumulado por la TASA_IVA.
-  const impuesto = redondear(subtotal * TASA_IVA);
-
-  // Retorna un objeto con los tres valores clave ya redondeados y listos para mostrarse.
-  return { subtotal, impuesto, total: redondear(subtotal + impuesto) };
+  // Las compras no aplican IVA: el total corresponde al subtotal.
+  return { subtotal, impuesto: 0, total: subtotal };
 }

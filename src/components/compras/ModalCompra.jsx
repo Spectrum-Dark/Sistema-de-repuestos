@@ -11,7 +11,7 @@ import {
   corregirCompra,
   listarProductosPorProveedor,
 } from '../../services/compras/comprasService';
-import { calcularTotales, TASA_IVA } from '../../utils/compras/calculos';
+import { calcularTotales } from '../../utils/compras/calculos';
 import {
   FILA_VACIA,
   filasDesdeDetalles,
@@ -394,7 +394,7 @@ export default function ModalCompra({
             )}
           </div>
 
-          {/* Tarjeta de resumen de montos (subtotal, IVA y total estimado) */}
+          {/* Tarjeta de resumen de montos sin IVA */}
           <div className="space-y-1 rounded-xl border border-slate-200 bg-slate-50 p-3 text-sm">
             <p className="mb-2 text-xs font-semibold text-slate-700">
               Resumen de compra
@@ -402,10 +402,6 @@ export default function ModalCompra({
             <div className="flex justify-between text-slate-600">
               <span>Subtotal</span>
               <span>{formatearPrecio(totales.subtotal)}</span>
-            </div>
-            <div className="flex justify-between text-slate-600">
-              <span>IVA ({Math.round(TASA_IVA * 100)} %)</span>
-              <span>{formatearPrecio(totales.impuesto)}</span>
             </div>
             <div className="flex justify-between font-semibold text-slate-900">
               <span>Total</span>

@@ -82,19 +82,15 @@ export default function ModalDetalleCompra({ compra, onCerrar }) {
           </table>
         </div>
 
-        {/* Resumen de totales de la compra (subtotal, IVA y monto total definitivo) */}
+        {/* Resumen de totales de la compra sin IVA */}
         <div className="ml-auto w-full space-y-1 rounded-xl border border-slate-200 bg-slate-50 p-3 text-sm sm:w-64">
           <div className="flex justify-between text-slate-600">
             <span>Subtotal</span>
             <span>{formatearPrecio(compra.subtotal)}</span>
           </div>
-          <div className="flex justify-between text-slate-600">
-            <span>IVA</span>
-            <span>{formatearPrecio(compra.impuesto)}</span>
-          </div>
           <div className="flex justify-between font-semibold text-slate-900">
             <span>Total</span>
-            <span>{formatearPrecio(compra.total)}</span>
+            <span>{formatearPrecio(compra.subtotal ?? compra.total)}</span>
           </div>
         </div>
 

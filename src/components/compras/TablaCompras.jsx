@@ -101,13 +101,10 @@ export default function TablaCompras({
                   {cantidadProductos(compra)} producto(s)
                 </td>
 
-                {/* Columna del monto total y detalle de IVA */}
+                {/* Columna del monto total de la compra */}
                 <td className="px-3 py-3.5">
                   <span className="block font-semibold text-slate-900">
-                    {formatearPrecio(compra.total)}
-                  </span>
-                  <span className="text-[11px] text-slate-500">
-                    IVA {formatearPrecio(compra.impuesto)}
+                    {formatearPrecio(compra.subtotal ?? compra.total)}
                   </span>
                 </td>
 
@@ -177,7 +174,7 @@ export default function TablaCompras({
                   Total
                 </span>
                 <span className="text-base font-semibold text-slate-900">
-                  {formatearPrecio(compra.total)}
+                  {formatearPrecio(compra.subtotal ?? compra.total)}
                 </span>
               </div>
             </div>
